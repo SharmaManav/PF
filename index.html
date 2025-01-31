@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mariana Trench</title>
+    <style>
+        /* Background video - Always visible */
+        #background-video {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            object-fit: cover;
+            z-index: -2; /* Keep it behind everything */
+        }
+
+        /* Preloader Styling */
+        #preloader {
+            position: fixed;
+            width: 100vw;
+            height: 100vh;
+            background: black;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            font-size: 24px;
+            font-family: Arial, sans-serif;
+            z-index: 9999; /* Ensure it stays on top */
+            opacity: 1;
+            transition: opacity 1s ease-out;
+        }
+
+        /* Clickable area for the beam */
+        #beam-clickable {
+            position: absolute;
+            left: calc(50% + 50px); /* Move right */
+            bottom: calc(10% - 50px); /* Move down */
+            width: 5%; /* Adjust width */
+            height: 10%; /* Adjust height */
+            transform: translateX(-50%);
+            background-color: rgba(255, 0, 0, 0); /* Invisible but clickable */
+            cursor: pointer;
+            z-index: 10; /* Ensure it's clickable */
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Background Video (Always Visible) -->
+    <video autoplay loop muted playsinline id="background-video">
+        <source src="./public/images/video1.webm" type="video/webm">
+        <source src="./public/images/video2.mp4" type="video/mp4">
+        Your browser does not support video.
+    </video>
+
+    <!-- Preloader Screen (Overlay on top) -->
+    <div id="preloader">
+        <p>The next 100x is out there.<br>How deep in the trenches are you willing to go?</p>
+    </div>
+
+    <!-- Invisible Clickable Area (Over Beam) -->
+    <a href="treasure.html" id="beam-clickable"></a>
+
+    <script>
+        // Wait a few seconds, then fade out the preloader
+        setTimeout(() => {
+            document.getElementById("preloader").style.opacity = "0"; // Fade out
+            setTimeout(() => {
+                document.getElementById("preloader").style.display = "none"; // Remove it
+            }, 1000); // Matches fade-out duration
+        }, 4000); // Show text for 4 seconds
+    </script>
+
+</body>
+</html>
